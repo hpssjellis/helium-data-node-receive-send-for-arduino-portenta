@@ -3,4 +3,4 @@
 
 ## With a github login Load this online gitpod server at
 
-https://gitpod.io/#github.com/hpssjellis/helium-data-node-receive-send
+https://gitpod.io/#https://github.com/hpssjellis/helium-data-node-receive-send-for-arduino-portenta
