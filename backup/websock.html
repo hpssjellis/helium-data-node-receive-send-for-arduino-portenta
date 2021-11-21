@@ -1,0 +1,103 @@
+<html>
+<head>
+
+<title>Arduino fast web page communication using a Node WS Express websocket</title>
+
+</head>
+
+
+<script>
+
+var host = location.origin.replace(/^http/, 'ws')
+var ws = new WebSocket(host);
+ws.onmessage = function (event) {
+    document.getElementById('myDiv1').innerHTML = event.data + '<br>'+document.getElementById('myDiv1').innerHTML; 
+};
+
+ ws.onconnection = function (event) {
+    ws.send('Hello Websocket');
+}; 
+    
+ ws.onopen = function (event) {
+    console.log('Socket Open');
+}; 
+
+
+
+</script>
+
+Use this to test new controls flashed to the Arduino
+<input id="myIn1" type=text value=E ><input type=button value=send onclick="{
+   ws.send(document.all.myIn1.value)
+}"><br><br>
+
+    
+<input type=button style="font-size:25px" value="Send LED-ON = A" onclick="{ws.send('A');}">
+
+<input  type=button style="font-size:25px" value="Send Led-OFF = B" onclick="{ws.send('B');}"><br><br>
+    
+Note: If speed is essential, using a touch screen the touchstart event is much faster than the onclick event.<br>
+    
+<input id="myOn" type=button style="font-size:25px" value="Send LED-ON = A using touchstart"    ontouchstart="{ws.send('A');return false;}" onclick="{ws.send('A');}">...
+
+<input id="myOff"  type=button style="font-size:25px" value="Send LED-OFF = B using touchstart" ontouchstart="{ws.send('B');return false;}" onclick="{ws.send('B');}"><br><br><br><br>
+
+Presently can only send one characterer commands.
+   
+    
+    
+
+<br><br><br><br>  
+<h1>C ping Sent every 12 seconds</h1>
+<div id="myDiv1">  here<br>  </div>
+  
+  
+Use at your own risk, by Jeremy Ellis<br>
+Canadian High School Robotics Teacher<br>
+Website: <a href="http://rocksetta.com/">http://rocksetta.com/</a><br>
+Twitter: <a href="https://twitter.com/rocksetta">https://twitter.com/rocksetta</a>  
+    
+    
+    
+    
+    
+<h2>The following can be deleted once things are working</h2 >  
+     
+Enter a delay<input type=text id="myDelay" size=20 value=100>  milliseconds per command<br>  
+Timer result <input type=text id="myWaitOut" size=70 > Watch that 10 flashes actually occur. <br>
+Lower the ms until only a few flashes occur or the LED does not turn off!<br>
+On my network I consistently can get 60 ms per command.<br>
+
+<input type=button value="20 Commands Sent Fast" onclick="{
+   var mytestInterval = document.all.myDelay.value*1    
+   var myTimer1 = new Date().getMilliseconds();;  
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*1); 
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*2); 
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*3);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*4);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*5);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*6);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*7);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*8);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*9);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*10);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*11);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*12);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*13);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*14);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*15);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*16);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*17);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*18);
+   setTimeout(function(){ document.all.myOn.click() }, mytestInterval*19);
+   setTimeout(function(){ document.all.myOff.click()}, mytestInterval*20);
+   setTimeout(function(){ document.getElementById('iFrameID').src = 'generic.html' }, mytestInterval*21); 
+   myElapsed = document.all.myDelay.value*20
+   document.all.myWaitOut.value = myElapsed+ ' milliseconds for 20 Core Commands = '+myElapsed/20 +' ms per command'
+}"><br>
+
+
+
+
+</body>
+</html>
