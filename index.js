@@ -1,5 +1,4 @@
 
-
 const http = require("http");
 
 const hostname = "0.0.0.0";
@@ -28,7 +27,9 @@ const server = http.createServer((req, res) => {
   });
   
   res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
+  res.setHeader("Content-Type", "text/html");
+  let myPage = "<input type=button value=cool onclick=\"{alert(\'wow\')}\" > "
+  res.write(myPage);
   res.end(oldChunk);
 });
 
