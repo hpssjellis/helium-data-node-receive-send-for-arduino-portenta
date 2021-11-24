@@ -1,0 +1,29 @@
+
+console.log(fruits instanceof Array);
+console.log(fruits instanceof Object);
+console.log(fruits instanceof Number);
+console.log(fruits instanceof String);
+
+
+
+const iterate = (obj) => {
+    Object.keys(obj).forEach(key => {
+
+    console.log(`key: ${key}, value: ${obj[key]}`)
+
+    if (typeof obj[key] === 'object') {
+            iterate(obj[key])
+        }
+    })
+}
+
+
+
+var obj = JSON.parse(text, function (key, value) {
+  if (key == "city") {
+    return value.toUpperCase();
+  } else {
+    return value;
+  }
+});
+
