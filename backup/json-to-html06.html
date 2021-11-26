@@ -31,7 +31,7 @@ var myObj = {"app_eui":"6081ertrert14BB81C","dev_eui":"A8610A3335277C06","devadd
 
   
  
-function oldlookdeep(object){
+function lookdeep(object){
     var collection= [], index= 0, next, item;
     for(item in object){
         if(object.hasOwnProperty(item)){
@@ -47,7 +47,7 @@ function oldlookdeep(object){
        
 
 
-function lookdeep(object){
+function newlookdeep(object){
     var collection= [], index= 0, next, item;
     for(item in object){
         if(object.hasOwnProperty(item)){
@@ -55,7 +55,7 @@ function lookdeep(object){
             if(typeof next == 'object' && next!= null){
                 collection[index++]= item + ':{ '+ lookdeep(next).join(', ')+'}';
             } 
-            else collection[index++]= [item+':'+JSON.stringify(next),3 , '<br>')  ];
+            else collection[index++]= [item+':'+String(next)];
         }
     }
     return collection;
@@ -66,7 +66,7 @@ function lookdeep(object){
 </script>
 
 
-Version 0.2.0<br>
+Version 0.2.2<br>
 
 
 
