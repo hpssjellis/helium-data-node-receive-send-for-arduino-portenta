@@ -53,12 +53,13 @@ function lookdeep(object){
     var collection= [], index= 0, next, item;
     for(item in object){
         if(object.hasOwnProperty(item)){
-            next= object[item];
-            if((typeof next== 'object' || typeof next== 'array') && next!= null){
-                collection[index++]= item +
-                ':{ '+ lookdeep(next).join(', ')+'}';
+            next = object[item];
+            if( typeof next == 'object' && next!= null){
+                collection[index++] = item + ':{ '+ lookdeep(next).join(', ')+'}';
+            } elseif  ( typeof next == 'array' && next!= null){
+                collection[index++] = item + ':[ '+ lookdeep(next).join(', ')+']';
             }
-            else collection[index++]= [item+':'+String(next)];
+            else collection[index++]= [item + ':'+String(next)];
         }
     }
     return collection;
@@ -70,7 +71,7 @@ function lookdeep(object){
 </script>
 
 
-Version 0.1.5<br>
+Version 0.1.6<br>
 
 
 
