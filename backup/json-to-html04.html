@@ -1,5 +1,4 @@
 
-    <input type="button" onclick="CreateTableFromJSON()" value="Create Table From JSON" />
     <p id="showData"></p>
 
 
@@ -38,7 +37,7 @@ var Obj2={
 };
 
 
-funciton myTry(validation_messages)  {  
+function myTry(validation_messages)  {  
     
  for (var key in validation_messages) {
    if (validation_messages.hasOwnProperty(key)) {
@@ -50,7 +49,6 @@ funciton myTry(validation_messages)  {
       }
    }
 }
- 
 }   
     
 
@@ -77,7 +75,7 @@ function lookdeep(object){
 </script>
 
 
-Version 0.0.2<br>
+Version 0.0.3<br>
 
 <input type=button value="asdf" onclick="{
    document.getElementById('showData').innerHTML = 'O={'+ lookdeep(O).join(',\n')+'}';                                    
