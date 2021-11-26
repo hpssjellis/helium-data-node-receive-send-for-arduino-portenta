@@ -56,7 +56,7 @@ function lookdeep(object){
             if(typeof next== 'object' && next!= null){
                 collection[index++]= item +
                 ':{ '+ lookdeep(next).join(', ')+'}';
-            } elseif (typeof next== 'array' && next!= null){
+            } else if (typeof next== 'array' && next!= null){
                 collection[index++]= item +
                 ':{ '+ lookdeep(next).join(', ')+'}';
             }
