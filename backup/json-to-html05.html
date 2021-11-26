@@ -63,7 +63,7 @@ function lookdeep(object){
 </script>
 
 
-Version 0.1.1<br>
+Version 0.1.2<br>
 
 <input type=button value="using textarea \n" onclick="{
    document.getElementById('myArea01').value = 'Obj2={'+ lookdeep(Obj2).join(',\n')+'}';                                    
@@ -82,14 +82,17 @@ Version 0.1.1<br>
 
 
 
-<input type=button value="asdf" onclick="{
-   document.getElementById('showData').innerHTML = JSON.stringify(lookdeep(myObj), , '<br>')                                   
+<input type=button value="string" onclick="{
+   document.getElementById('showData').innerHTML = JSON.stringify(lookdeep(myObj),3 , '<br>')                                   
                                          
   }">
 
+<input type=button value="br=are string" onclick="{
+   document.getElementById('showData').innerHTML = JSON.stringify(lookdeep(myObj))                                   
+                                         
+  }">
 
-
-    <p id="showData"></p>
+<p id="showData"></p>
 
 <textarea id="myArea01"  rows=10 cols=70 noWRAP>...</textarea>
 
