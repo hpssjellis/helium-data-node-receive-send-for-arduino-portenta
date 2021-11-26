@@ -38,6 +38,41 @@ var Obj2={
 };
 
 
+funciton myTry(validation_messages)  {  
+    
+ for (var key in validation_messages) {
+   if (validation_messages.hasOwnProperty(key)) {
+      var obj = validation_messages[key];
+      for (var prop in obj) {
+         if (obj.hasOwnProperty(prop)) {
+            alert(prop + " = " + obj[prop]);
+         }
+      }
+   }
+}
+ 
+}   
+    
+
+
+
+function lookdeep(object){
+    var collection= [], index= 0, next, item;
+    for(item in object){
+        if(object.hasOwnProperty(item)){
+            next= object[item];
+            if(typeof next== 'object' && next!= null){
+                collection[index++]= item +
+                ':{ '+ lookdeep(next).join(', ')+'}';
+            }
+            else collection[index++]= [item+':'+String(next)];
+        }
+    }
+    return collection;
+}   
+    
+    
+    
 
 </script>
 
@@ -50,7 +85,7 @@ Version 0.0.2<br>
   }">
 
 <input type=button value="afffff" onclick="{
-   document.getElementById('showData').innerHTML = 'O={'+ lookdeep(O).join(',\n')+'}';                                    
+   myTry(Obj2);                                  
                                          
   }">
 
