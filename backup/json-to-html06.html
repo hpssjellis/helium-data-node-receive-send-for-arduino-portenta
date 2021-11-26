@@ -35,10 +35,9 @@ function oldlookdeep(object){
     var collection= [], index= 0, next, item;
     for(item in object){
         if(object.hasOwnProperty(item)){
-            next= object[item];
+            next = object[item];
             if(typeof next== 'object' && next!= null){
-                collection[index++]= item +
-                ':{ '+ lookdeep(next).join(', ')+'}';
+                collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
             }
             else collection[index++]= [item+':'+String(next)];
         }
@@ -53,14 +52,10 @@ function lookdeep(object){
     for(item in object){
         if(object.hasOwnProperty(item)){
             next= object[item];
-            if(typeof next== 'object' && next!= null){
-                collection[index++]= item +
-                ':{ '+ lookdeep(next).join(', ')+'}';
-            } else if (typeof next== 'array' && next!= null){
-                collection[index++]= item +
-                ':{ '+ lookdeep(next).join(', ')+'}';
-            }
-            else collection[index++]= [item+':'+String(next)];
+            if(typeof next == 'object' && next!= null){
+                collection[index++]= item + ':{ '+ lookdeep(next).join(', ')+'}';
+            } 
+            else collection[index++]= [item+':'+JSON.stringify(next),3 , '<br>')  ];
         }
     }
     return collection;
@@ -71,7 +66,7 @@ function lookdeep(object){
 </script>
 
 
-Version 0.1.6<br>
+Version 0.2.0<br>
 
 
 
