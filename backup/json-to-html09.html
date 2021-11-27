@@ -37,14 +37,41 @@ function lookdeep(object){
            // console.log(next)    
             if(typeof next== 'object' && next!= null ){
                 collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
-            } else collection[index++]= [item+':'+String(next)];
+            } else collection[index++]= [item+' : '+String(next)];
             
         } 
     }
     return collection;
 }   
         
-          
+            
+function lookdeepSafe3(object){
+    var collection= [], index= 0, next, item;
+    for(item in object){
+        if(object.hasOwnProperty(item)){
+            next = object[item];
+           // console.log(item)    
+           // console.log(next)    
+            if(typeof next== 'object' && next!= null ){
+               if (myNoNoShow.includes(item)) {
+                  collection[index++] =   item + ' : *********************** ' ;
+              }   else {
+                  collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
+              }
+            } else             if (myNoNoShow.includes(item)) {
+                  collection[index++] =   item + ' : *********************** ' ;
+              }   else {
+                  collection[index++] =   item + ' : ' + next;
+              }
+            
+        } 
+    }
+    return collection;
+}   
+   
+        
+        
+        
 function lookdeepSafe2(object, myNoNoShow){
     var collection= [], index= 0, next, item;
     console.log(myNoNoShow)
@@ -153,7 +180,13 @@ Version 0.4.6<br>
                                          
   }">
 
-<input type=button value="Full-Safe" onclick="{
+<input type=button value="Full-Safe3" onclick="{
+    myNoShow = ['app_eui', 'dev_eui']                                              
+   document.getElementById('showData').innerHTML = JSON.stringify(lookdeepSafe3(myObj, myNoShow),3 , '<br>')                                   
+                                         
+  }">
+
+<input type=button value="Full-Safe2" onclick="{
     myNoShow = ['app_eui', 'dev_eui']                                              
    document.getElementById('showData').innerHTML = JSON.stringify(lookdeepSafe2(myObj, myNoShow),3 , '<br>')                                   
                                          
@@ -165,11 +198,15 @@ Version 0.4.6<br>
   }">
 
 
-<input type=button value="string-3-Safe" onclick="{
+<input type=button value="string-Safe" onclick="{
     myNoShow = ['app_eui', 'dev_eui']                                              
    document.getElementById('showData').innerHTML = JSON.stringify(lookdeepSafe(myObj, myNoShow),3 , '<br>')                                   
                                          
   }">
+
+
+
+
 
 
 <input type=button value="books" onclick="{
