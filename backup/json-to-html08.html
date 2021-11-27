@@ -72,13 +72,15 @@ function lookdeepSafe(object,myNoNoShow){
     for(item in object){
         if(object.hasOwnProperty(item)){
             next = object[item];
-            console.log(item)    
+            //console.log(item)    
             //console.log(next)     
                 
-              if (myNoNoShow.includes(item)) {console.log('noShow')}   
-           // if (item in myNoNoShow) {console.log('noShow')}    
-                
-                
+              if (myNoNoShow.includes(item)) {
+                  collection[index++] =   item + ' : *********************** ' ;
+              }   else {
+                  collection[index++] =   item + ' : ' + next;
+              }
+         
             collection[index++] =   item + ' : ' + next;
         } 
     }
