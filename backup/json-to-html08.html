@@ -62,7 +62,24 @@ function lookdeepConsole(object){
     }
     return collection;
 }  
+     
         
+        
+          
+function lookdeepSafe(object,myNoNoShow){
+    var collection= [], index= 0, next, item;
+    for(item in object){
+        if(object.hasOwnProperty(item)){
+            next = object[item];
+            console.log(item)    
+            //console.log(next)                  
+            if (item in myNoNoShow) {console.log('noShow')}    
+            collection[index++] =   item + ' : ' + next;
+        } 
+    }
+    return collection;
+}  
+    
         
  
 function lookdeepOld2(object){
@@ -116,7 +133,7 @@ function newlookdeep(object){
 </script>
 
 
-Version 0.3.16<br>
+Version 0.4.0<br>
 
 
 
@@ -127,10 +144,18 @@ Version 0.3.16<br>
   }">
 
 
-<input type=button value="string-3-" onclick="{
+<input type=button value="string-3-HTML" onclick="{
    document.getElementById('showData').innerHTML = JSON.stringify(lookdeepConsole(myObj),3 , '<br>')                                   
                                          
   }">
+
+
+<input type=button value="string-3-Safe" onclick="{
+    myNoShow = ['app_eui', 'dev_eui']                                              
+   document.getElementById('showData').innerHTML = JSON.stringify(lookdeepSafe(myObj, myNoShow),3 , '<br>')                                   
+                                         
+  }">
+
 
 <input type=button value="books" onclick="{
    document.getElementById('showData').innerHTML = JSON.stringify(lookdeep(myBooks),3 , '<br>')                                   
