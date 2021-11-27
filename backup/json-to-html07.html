@@ -35,7 +35,8 @@ function lookdeep(object){
     for(item in object){
         if(object.hasOwnProperty(item)){
             next = object[item];
-            if(typeof next== 'object' && next!= null && next!= "[" && next!= "]"){
+            console.log(next)    
+            if(typeof next== 'object' && next!= null ){
                 collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
             } else collection[index++]= [item+':'+String(next)];
             
@@ -79,7 +80,7 @@ function newlookdeep(object){
 </script>
 
 
-Version 0.3.11<br>
+Version 0.3.12<br>
 
 
 
@@ -101,15 +102,15 @@ Version 0.3.11<br>
 }">  
 
 <input type=button value="cool" onclick="{
-    document.getElementById('showData').innerHTML = `  <input type=password value = 'Cool'  readonly onclick=\"{
+    document.getElementById('showData').innerHTML = `  
+     <input type=password value = 'Cool'  readonly onclick='{
        if (this.type == 'password' ){
         this.type = 'test' 
        } else  {                                 
         this.type = 'password'
        }                                   
-}\"><br>
-   
-   `}">                                                    
+}'><br>
+`}">                                                    
            
 
 
@@ -117,13 +118,7 @@ Version 0.3.11<br>
 
 <p id="showData">...</p>
 
-<input type=password value = "Cool double"  readonly onclick="{
-       if (this.type == \"password\" ){
-        this.type = \"test\" 
-       } else  {                                 
-        this.type = \"password\"
-       }                                   
-}"><br>
+
 
 
 <input type=password value = "Cool single"  readonly onclick="{
