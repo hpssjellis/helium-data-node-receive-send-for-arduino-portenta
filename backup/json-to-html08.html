@@ -27,19 +27,30 @@ var myObj = {"app_eui":"6081ertrert14BB81C","dev_eui":"A8610A3335277C06","devadd
     
 
 function myPassData(){
- myTemp = `<input type=password value = "Cool single"  readonly onclick="{
-       if (this.type == 'password' ){
-        this.type = 'test' 
-       } else  {                                 
-        this.type = 'password'
-       }                                   
-}"><br> `
+ return "hi"
         
-        
-  return myTemp
 }
-  
+        
+        
 function lookdeep(object){
+    var collection= [], index= 0, next, item;
+    for(item in object){
+        if(object.hasOwnProperty(item)){
+            next = object[item];
+            console.log(item)    
+            console.log(next)    
+            if(typeof next== 'object' && next!= null ){
+                collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
+            } else collection[index++]= [item+':'+String(next)];
+            
+        } 
+    }
+    return collection;
+}   
+        
+        
+  
+function lookdeepConsole(object){
     var collection= [], index= 0, next, item;
     for(item in object){
         if(object.hasOwnProperty(item)){
@@ -105,13 +116,19 @@ function newlookdeep(object){
 </script>
 
 
-Version 0.3.15<br>
+Version 0.3.16<br>
 
 
 
 
 <input type=button value="string-3-" onclick="{
    document.getElementById('showData').innerHTML = JSON.stringify(lookdeep(myObj),3 , '<br>')                                   
+                                         
+  }">
+
+
+<input type=button value="string-3-" onclick="{
+   document.getElementById('showData').innerHTML = JSON.stringify(lookdeepConsole(myObj),3 , '<br>')                                   
                                          
   }">
 
@@ -135,7 +152,23 @@ Version 0.3.15<br>
         this.type = 'password'
        }                                   
 }'><br>
-`}">                                                    
+`}">               
+
+<input type=button value="cool2" onclick="{
+    document.getElementById('showData').innerHTML = `  
+     <input type=password value = 'Cool'  readonly onclick='{
+       if (this.type == password ){
+        this.type = test
+       } else  {                                 
+        this.type = password
+       }                                   
+}'><br>
+`}">               
+
+
+
+
+
            
 <input type=button value="Pass" onclick="{
     document.getElementById('showData').innerHTML = myPassData()
