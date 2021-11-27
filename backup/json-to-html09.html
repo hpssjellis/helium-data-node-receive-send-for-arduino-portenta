@@ -170,7 +170,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.4.10<br>
+Version 0.4.11<br>
 
 
 
@@ -181,13 +181,13 @@ Version 0.4.10<br>
   }">
 
 <input type=button value="Full-Safe3" onclick="{
-    myNoShow = ['app_eui', 'dev_eui']                                              
+    myNoShow = ['app_eui', 'dev_eui', 'lat', 'long']                                
    document.getElementById('showData').innerHTML = JSON.stringify(lookdeepSafe3(myObj, myNoShow),3 , '<br>')                                   
                                          
   }">
 
 <input type=button value="Full-Safe2" onclick="{
-    myNoShow = ['app_eui', 'dev_eui']                                              
+    myNoShow = ['app_eui', 'dev_eui', 'lat', 'long']                              
    document.getElementById('showData').innerHTML = JSON.stringify(lookdeepSafe2(myObj, myNoShow),3 , '<br>')                                   
                                          
   }">
