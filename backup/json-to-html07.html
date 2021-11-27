@@ -35,7 +35,7 @@ function lookdeep(object){
     for(item in object){
         if(object.hasOwnProperty(item)){
             next = object[item];
-            if(typeof next== 'object' && next!= null){
+            if(typeof next== 'object' && next!= null && next!= "[" && next!= "]"){
                 collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
             } else collection[index++]= [item+':'+String(next)];
             
@@ -79,7 +79,7 @@ function newlookdeep(object){
 </script>
 
 
-Version 0.3.10<br>
+Version 0.3.11<br>
 
 
 
