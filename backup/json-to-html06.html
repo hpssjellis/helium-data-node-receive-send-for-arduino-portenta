@@ -92,8 +92,12 @@ Version 0.2.7<br>
 
 <p id="showData">...</p>
 
-<input type=text value =cool onclick="{
-       this.type = 'password'                                                                              
+<input type=password value =cool onclick="{
+       if (this.type == 'password' ){
+        this.type = 'test' 
+       } else  {                                 
+        this.type = 'password'
+       }                                   
 }"><br>
 
 <textarea rows=4 cols=50>
