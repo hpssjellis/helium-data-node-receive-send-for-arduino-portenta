@@ -59,8 +59,9 @@ function lookdeepSafe2(object, myNoNoShow){
                   collection[index++] =   item + ' : ' + next;
               }
             if(typeof next== 'object' && next!= null ){
-                collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
-            } else collection[index++]= [item+':'+String(next)];
+                 lookdeep(next)
+               // collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
+            } //else collection[index++]= [item+':'+String(next)];
             
         } 
     }
@@ -142,7 +143,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.4.5<br>
+Version 0.4.6<br>
 
 
 
