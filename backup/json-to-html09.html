@@ -47,6 +47,8 @@ function lookdeep(object){
             
 function lookdeepSafe3(object, myNoNoShow){
     var collection= [], index= 0, next, item;
+        
+    console.log(myNoNoShow)
     for(item in object){
         if(object.hasOwnProperty(item)){
             next = object[item];
@@ -170,7 +172,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.4.11<br>
+Version 0.4.12<br>
 
 
 
