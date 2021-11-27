@@ -38,12 +38,26 @@ function lookdeep(object){
             if(typeof next== 'object' && next!= null){
                 collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
             }
+            
+        } else collection[index++]= [item+':'+String(next)];
+    }
+    return collection;
+}   
+   
+        
+ function lookdeep2(object){
+    var collection= [], index= 0, next, item;
+    for(item in object){
+        if(object.hasOwnProperty(item)){
+            next = object[item];
+            if(typeof next== 'object' && next!= null){
+                collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
+            }
             else collection[index++]= [item+':'+String(next)];
         }
     }
     return collection;
 }   
-       
 
 
 function newlookdeep(object){
@@ -65,7 +79,7 @@ function newlookdeep(object){
 </script>
 
 
-Version 0.3.7<br>
+Version 0.3.8<br>
 
 
 
@@ -82,18 +96,18 @@ Version 0.3.7<br>
 
 
 <input type=button value="quotes" onclick="{
-   alert('/"wow/"')
+   alert(' \"wow\" ')
    
 }">  
 
 <input type=button value="cool" onclick="{
-    document.getElementById('showData').innerHTML = `  <input type=password value = /"Cool/"  readonly onclick=/"{
+    document.getElementById('showData').innerHTML = `  <input type=password value = \"Cool\"  readonly onclick=\"{
        if (this.type == 'password' ){
         this.type = 'test' 
        } else  {                                 
         this.type = 'password'
        }                                   
-}/"><br>`
+}\"><br>`
    
 }">                                                    
            
