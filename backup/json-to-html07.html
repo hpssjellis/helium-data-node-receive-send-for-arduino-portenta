@@ -38,7 +38,7 @@ function lookdeep(object){
             if(typeof next== 'object' && next!= null){
                 collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
             }
-            else collection[index++]= [item+':'+String(next)];
+          //  else collection[index++]= [item+':'+String(next)];
         }
     }
     return collection;
@@ -65,7 +65,7 @@ function newlookdeep(object){
 </script>
 
 
-Version 0.3.2<br>
+Version 0.3.4<br>
 
 
 
@@ -91,7 +91,13 @@ Version 0.3.2<br>
 }/"><br>`
    
 }">                                                    
-                                                   
+           
+
+
+<input type=button value="quotes" onclick="{
+alert('\"wow\"')
+   
+}">     
 
 <p id="showData">...</p>
 
