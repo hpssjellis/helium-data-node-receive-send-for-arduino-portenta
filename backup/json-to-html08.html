@@ -67,14 +67,18 @@ function lookdeepConsole(object){
         
           
 function lookdeepSafe(object,myNoNoShow){
-    var collection= [], index= 0, next, item;
+    var collection= [], index= 0, next, item, myTest;
     console.log(myNoNoShow)
     for(item in object){
         if(object.hasOwnProperty(item)){
             next = object[item];
             console.log(item)    
-            //console.log(next)                  
-            if (item in myNoNoShow) {console.log('noShow')}    
+            //console.log(next)     
+                
+              if (myNoNoShow.includes(item) {console.log('noShow')}   
+           // if (item in myNoNoShow) {console.log('noShow')}    
+                
+                
             collection[index++] =   item + ' : ' + next;
         } 
     }
@@ -134,7 +138,7 @@ function newlookdeep(object){
 </script>
 
 
-Version 0.4.0<br>
+Version 0.4.2<br>
 
 
 
