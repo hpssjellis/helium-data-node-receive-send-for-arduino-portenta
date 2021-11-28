@@ -47,7 +47,8 @@ function lookdeep4(object, myNoNoShow){
                  if (Array.isArray(next)){
                          for (let cool=0; cool < next.length; cool++){
                    collection += "<ol>"  +  item + "<br>" +  lookdeep(next[cool], myNoNoShow) + "</ol>";      
-                         }                    
+                         } 
+                 }     
             } else {
                   collection += "<ol>"  +  item + "<br>" +  lookdeep(next, myNoNoShow) + "</ol>";
             }   else  {           
@@ -210,7 +211,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.5.9<br>
+Version 0.5.10<br>
 
 
 
