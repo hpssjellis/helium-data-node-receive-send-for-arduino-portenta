@@ -1,4 +1,4 @@
-<h5> Version 0.0.6 </h5>
+<h5> Version 0.0.7 </h5>
 
 
 <script>
@@ -23,13 +23,10 @@ function appendDOM( json, element ) {
 }
 
 
-let json = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
 
-appendDOM( json, document.getElementById('content') );  
   
   
-</script>
-  
+
   
   
   
@@ -98,7 +95,17 @@ function iterateJsonToHTML(frame) {
                                
    document.getElementById('content').innerHTML = myHTML;
                                         
-}">
+}"><br>
+
+<input type=button value=test2 onclick="{
+
+let json = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
+
+appendDOM( json, document.getElementById('content') ); 
+                                        
+}"><br>
+
+ 
 
 <div id='content'>...</div>
 
