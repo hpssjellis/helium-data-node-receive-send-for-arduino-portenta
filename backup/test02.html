@@ -1,4 +1,4 @@
-<h5> Version 0.0.8 </h5>
+<h5> Version 0.0.9 </h5>
 
 
 <script>
@@ -25,81 +25,20 @@ function appendDOM( json, element ) {
 
 
   
-  
+  let json = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
+
 
   
   
   
   
-  
-  
- let myJson = {
-  id: "foo",
-  rows: [{
-      class: "blah",
-      cols: [{
-        class: "haha"
-      }, {
-        class: "bar"
-      }, {
-        class: "baz"
-      }]
-    },
-    {
-      class: "yada"
-    }
-  ]
-}
-
-function iterateJsonToHTMLOld(frame) {
-  let html = "";
-  html += '<div id = "' + frame.id + '" data-type = "rows">';
-  for (let i = 0; i < frame.rows.length; i++) {
-    html += '<div class = "' + frame.rows[i].class + '" data-type = "cols">';
-    if (frame.rows[i].cols) {
-      for (let j = 0; j < frame.rows[i].cols.length; j++) {
-        html += '<div class = "' + frame.rows[i].cols[j].class + '"></div>';
-      }
-    }
-    html += '</div>';
-  }
-  html += '</div>';
-  document.getElementById('content').innerHTML = html;
-}
-
-function iterateJsonToHTML(frame) {
-  let html = "";
-  html += '<div id = "' + frame.id + '" data-type = "rows">';
-  for (let i = 0; i < frame.rows.length; i++) {
-    html += '<div class = "' + frame.rows[i].class + '" data-type = "cols">';
-    if (frame.rows[i].cols) {
-      for (let j = 0; j < frame.rows[i].cols.length; j++) {
-        html += '<div class = "' + frame.rows[i].cols[j].class + '"></div>';
-      }
-    }
-    html += '</div>';
-  }
-  html += '</div>';
- // document.getElementById('content').innerHTML = html;
-  return html;
-}
-
- 
   
   
 </script>
 
-<input type=button value=test1 onclick="{
-   const myHTML =  iterateJsonToHTML(myJson);  
-   console.log(myHTML);
-                               
-   document.getElementById('content').innerHTML = myHTML;
-                                        
-}"><br>
 
 <input type=button value=test2 onclick="{
 
-let json = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
 
 appendDOM( json, document.getElementById('content') ); 
                                         
