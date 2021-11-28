@@ -13,23 +13,21 @@ function myJsonToHtml( json, element ) {
   let myOutput = "<ul>";
   for (const property in json) {
     if( typeof json[property] === 'string' ) {
-     // child.setAttribute( property, json[property] );
       myOutput += "<li>" + property + " : " + json[property] 
     } else if( Array.isArray( json[property] ) ) {
       myOutput += "<ul>";
-    	for( let i=0; i< json[property].length; i++ ) {
-          for (const propertyArray in json[property][i]) {
-             myOutput += "<li>" + propertyArray+ "[" + i + "]";
+    	for( let i=0; i < json[property].length; i++ ) {
+        //  for (const propertyArray in json[property][i]) {
+             myOutput += "<li>" + property+ "[" + i + "]";
             
              myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
             
-          }  
+          //}  
       }
       myOutput += "</ul>";
     }
   }
   myOutput += "</ul>";
- // element.appendChild( child );
   return myOutput
 }  
   
