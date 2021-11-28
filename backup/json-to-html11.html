@@ -30,38 +30,39 @@ var myObj = {"app_eui":"6081ertrert14BB81C","dev_eui":"A8610A3335277C06","devadd
 
             
 function lookdeep4(object, myNoNoShow){
-    var collection= "", index= 0, next, item;
+var collection= "", index= 0, next, item;
         
   //  console.log(myNoNoShow)
-    for(item in object){
-        if(object.hasOwnProperty(item)){
-            next = object[item];
+for(item in object){
+   if(object.hasOwnProperty(item)){
+       next = object[item];
            // console.log(item)    
            // console.log(next)    
   
-            if(typeof next== 'Array'){console.log("Array"); collection += "Array<br>"}
-            if(typeof next== 'Class' ){console.log("Class")}
-            if(typeof next== 'object' && next!= null ){
+           // if(typeof next== 'Array'){console.log("Array"); collection += "Array<br>"}
+            //if(typeof next== 'Class' ){console.log("Class")}
+       if(typeof next== 'object' && next!= null ){
                    // console.log(next)
                     
-                 if (Array.isArray(next)){
-                         for (let cool=0; cool < next.length; cool++){
+           if (Array.isArray(next)){
+               for (let cool=0; cool < next.length; cool++){
                    collection += "<ol>"  +  item + "<br>" +  lookdeep(next[cool], myNoNoShow) + "</ol>";      
-                         } 
-                 }     
+               } 
+                      
             } else {
                   collection += "<ol>"  +  item + "<br>" +  lookdeep(next, myNoNoShow) + "</ol>";
-            }   else  {           
-                  if (myNoNoShow.includes(item)) {
-                       collection +=   "<li>" + item + ' : ***********************' ;
-                  }   else {
+           
+        }   else  {           
+            if (myNoNoShow.includes(item)) {
+                collection +=   "<li>" + item + ' : ***********************' ;
+            }   else {
                        collection +=  "<li>" +  item + ' : ' + next ;
-                  }
+            }
             
-               } 
+           
         }       
-    }
-    return collection;
+   }
+   return collection;
 }   
 
 
@@ -211,7 +212,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.5.10<br>
+Version 0.5.11<br>
 
 
 
