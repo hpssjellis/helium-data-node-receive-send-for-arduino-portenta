@@ -249,7 +249,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.5.19<br>
+Version 0.5.20<br>
 
 
 
@@ -299,7 +299,11 @@ Version 0.5.19<br>
 
 
 <input type=button value="books" onclick="{
-   document.getElementById('showData').innerHTML = JSON.stringify(lookdeep(myBooks),3 , '<br>')                                   
+   foreach(myObj as $elem)  {
+   echo($elem['id']. ", ".$elem['name'] );
+   echo("<br/>");
+}
+  // document.getElementById('showData').innerHTML = JSON.stringify(lookdeep(myBooks),3 , '<br>')                                   
                                          
   }">
 
