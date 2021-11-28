@@ -1,4 +1,4 @@
-<h5> Version 0.1.19 </h5>
+<h5> Version 0.1.20 </h5>
 
 
 <script>
@@ -17,15 +17,16 @@ function myJsonToHtml( json, element ) {
     } else if( Array.isArray( json[property] ) ) {
       myOutput += "<ul>";
     	for( let i=0; i < json[property].length; i++ ) {
+         if(typeof json[property][i] == 'object' && json[property][i] != null ){ 
+            myOutput += "<br>OBJECT in ARRAY --" + property+ "[" + i + "]";     
+            myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
+          } else {
              myOutput += "<li>" + property+ "[" + i + "]";          
              myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
-             
-      } //end else  Array
+          } // end if object
+      } //end for
       
-      else if(typeof json[property][i] == 'object' && json[property][i] != null ){ 
-            myOutput += "<br>OBJECT in ARRAY --" + property+ "[" + i + "]";     
-           myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
-      }
+      } // end if array 
       myOutput += "</ul>";
     }// end if typeof
   } //end for
