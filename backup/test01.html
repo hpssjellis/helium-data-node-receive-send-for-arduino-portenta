@@ -1,9 +1,40 @@
-<h5> Version 0.0.4  </h5>
+<h5> Version 0.0.5  </h5>
 
 
 <script>
 //from
 // https://stackoverflow.com/questions/59959193/iterate-complex-json-object-of-unknown-complexity?rq=1
+  
+  
+function appendDOM( json, element ) {
+  let child = document.createElement('div');
+  
+  for (const property in json) {
+    if( typeof json[property] === 'string' ) {
+      child.setAttribute( property, json[property] );
+    } else if( Array.isArray( json[property] ) ) {
+    	for( let i=0; i< json[property].length; i++ ) {
+        appendDOM( json[property][i], child );
+      }
+    }
+  }
+  
+  element.appendChild( child );
+}
+
+
+let json = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
+
+appendDOM( json, document.getElementById('content') );  
+  
+  
+</script>
+  
+  
+  
+  
+  
+  
   
  let myJson = {
   id: "foo",
