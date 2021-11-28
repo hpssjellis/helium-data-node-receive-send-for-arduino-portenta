@@ -1,4 +1,4 @@
-<h5> Version 0.1.16 </h5>
+<h5> Version 0.1.17 </h5>
 
 
 <script>
@@ -7,7 +7,7 @@
   
 
 
-  
+//  if (myNoNoShow.includes(item)) { collection +=   item + ' : *********************** <br>' ;  
   
 function myJsonToHtml( json, element ) {
   let myOutput = "<ul>";
@@ -42,11 +42,6 @@ var myObj = {"app_eui":"6081ertrert14BB81C","dev_eui":"A8610A3335277C06","devadd
 
 let json = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
 
-
-  
-  
-  
-  
   
   
 </script>
@@ -62,13 +57,36 @@ let myHTML = myJsonToHtml(json, document.getElementById('content'))
                                         
 }"><br>
 
+<input type=button value=test-mine onclick="{
+
+let myHTML = myJsonToHtml(myObj, document.getElementById('content'))
+  document.getElementById('content').innerHTML = myHTML
+  console.log(document.getElementById('content').innerHTML)
+                                        
+}"><br>
+
+
  
 
 <div id='content'>...</div>
 
 
 <hr>
-...<div id="foo"><div class="blah"><div class="haha"></div><div class="bar"></div><div class="baz"></div></div><div class="yada" style="background: yellow"></div></div>
+<pre>
+let json = {
+  id: "foo",
+  rows: [
+    {
+      class: "blah",
+      cols: [
+        { class: "haha"},
+        { class: "bar" },
+        { class: "baz" }
+      ]
+    }, {
+      class: "yada"
+    }
+  ]
+}
 
-<hr>
-<ul><li>id : foo<ul>r : undefinedo : undefined</ul></li></ul>
+</pre>
