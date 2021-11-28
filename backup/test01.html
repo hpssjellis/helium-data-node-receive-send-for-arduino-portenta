@@ -1,4 +1,4 @@
-Version 0.0.2
+<h5> Version 0.0.4  </h5>
 
 
 <script>
@@ -62,9 +62,10 @@ function iterateJsonToHTML(frame) {
 </script>
 
 <input type=button value=test1 onclick="{
-   //iterateJsonToHTML(myJson);
-   //console.log(document.getElementById('content').innerHTML)                                     
-   document.getElementById('content').innerHTML = iterateJsonToHTML(myJson);  
+   const myHTML =  iterateJsonToHTML(myJson);  
+   console.log(myHTML);
+                               
+   document.getElementById('content').innerHTML = myHTML;
                                         
 }">
 
