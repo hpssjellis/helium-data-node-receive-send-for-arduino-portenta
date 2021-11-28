@@ -1,10 +1,20 @@
-<h5> Version 0.1.20 </h5>
+<h5> Version 0.1.21 </h5>
+
+
 
 
 <script>
 //from
 // https://stackoverflow.com/questions/59959193/iterate-complex-json-object-of-unknown-complexity?rq=1
+ 
   
+  /*
+           if(typeof json[property][i] == 'object' && json[property][i] != null ){ 
+            myOutput += "<br>OBJECT in ARRAY --" + property+ "[" + i + "]";     
+            myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
+          } else {
+  
+*/  
 
 
 //  if (myNoNoShow.includes(item)) { collection +=   item + ' : *********************** <br>' ;  
@@ -15,17 +25,12 @@ function myJsonToHtml( json, element ) {
     if( typeof json[property] === 'string' ) {
       myOutput += "<li>" + property + " : " + json[property] 
     } else if( Array.isArray( json[property] ) ) {
-      myOutput += "<ul>";
-    	for( let i=0; i < json[property].length; i++ ) {
-         if(typeof json[property][i] == 'object' && json[property][i] != null ){ 
-            myOutput += "<br>OBJECT in ARRAY --" + property+ "[" + i + "]";     
-            myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
-          } else {
+         myOutput += "<ul>";
+    	   for( let i=0; i < json[property].length; i++ ) {
              myOutput += "<li>" + property+ "[" + i + "]";          
              myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
-          } // end if object
-      } //end for
-      
+       
+         } //end for
       } // end if array 
       myOutput += "</ul>";
     }// end if typeof
