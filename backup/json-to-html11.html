@@ -43,7 +43,7 @@ function lookdeep4(object, myNoNoShow){
             if(typeof next== 'Class' ){console.log("Class")}
             if(typeof next== 'object' && next!= null ){
                    // console.log(next)
-                    if (Array.isArray(next){collection +=  "<br>ARRAY</br>"} 
+                    if (Array.isArray(next)){collection +=  "<br>ARRAY</br>"} 
                   collection += "<ol>"  +  item + "<br>" +  lookdeep(Object.entries(next), myNoNoShow) + "</ol>";
             }   else  {           
                   if (myNoNoShow.includes(item)) {
@@ -205,7 +205,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.5.7<br>
+Version 0.5.8<br>
 
 
 
