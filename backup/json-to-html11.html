@@ -35,7 +35,7 @@ function lookdeep4(object, myNoNoShow){
             next = object[item];
            // console.log(item)    
            // console.log(next)    
-            if(typeof next== 'object' && next!= null ){
+
                     
                     
                if (Array.isArray(next)){
@@ -44,7 +44,7 @@ function lookdeep4(object, myNoNoShow){
                   } 
                       
                }        // not array     
-                    
+             if(typeof next== 'object' && next!= null ){                   
                     
                if (myNoNoShow.includes(item)) {
                   collection +=   item + ' : *********************** <br>' ;
@@ -249,7 +249,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.5.18<br>
+Version 0.5.19<br>
 
 
 
