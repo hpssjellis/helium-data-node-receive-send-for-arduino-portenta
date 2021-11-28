@@ -43,7 +43,7 @@ function lookdeep4(object, myNoNoShow){
                      collection += "<ol>"  +  item + "<br>" +  lookdeep(next[cool], myNoNoShow) + "</ol>";   // array   
                   } 
                       
-               }            
+               }  else {        // not array     
                     
                     
                if (myNoNoShow.includes(item)) {
@@ -56,7 +56,7 @@ function lookdeep4(object, myNoNoShow){
               }   else {
                   collection[index++] =   item + ' : ' + next + '<br>';
               }
-            
+          }
         } 
     }
     return collection;
@@ -249,7 +249,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.5.15<br>
+Version 0.5.16<br>
 
 
 
