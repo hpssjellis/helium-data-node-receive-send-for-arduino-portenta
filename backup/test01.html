@@ -1,8 +1,11 @@
+Version 0.0.2
+
+
 <script>
 //from
 // https://stackoverflow.com/questions/59959193/iterate-complex-json-object-of-unknown-complexity?rq=1
   
- let json = {
+ let myJson = {
   id: "foo",
   rows: [{
       class: "blah",
@@ -20,7 +23,7 @@
   ]
 }
 
-function iterateJsonToHTML(frame) {
+function iterateJsonToHTMLOld(frame) {
   let html = "";
   html += '<div id = "' + frame.id + '" data-type = "rows">';
   for (let i = 0; i < frame.rows.length; i++) {
@@ -36,6 +39,22 @@ function iterateJsonToHTML(frame) {
   document.getElementById('content').innerHTML = html;
 }
 
+function iterateJsonToHTML(frame) {
+  let html = "";
+  html += '<div id = "' + frame.id + '" data-type = "rows">';
+  for (let i = 0; i < frame.rows.length; i++) {
+    html += '<div class = "' + frame.rows[i].class + '" data-type = "cols">';
+    if (frame.rows[i].cols) {
+      for (let j = 0; j < frame.rows[i].cols.length; j++) {
+        html += '<div class = "' + frame.rows[i].cols[j].class + '"></div>';
+      }
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+ // document.getElementById('content').innerHTML = html;
+  return html;
+}
 
  
   
@@ -43,8 +62,9 @@ function iterateJsonToHTML(frame) {
 </script>
 
 <input type=button value=test1 onclick="{
-   iterateJsonToHTML(json);
-console.log(document.getElementById('content').innerHTML)                                     
+   //iterateJsonToHTML(myJson);
+   //console.log(document.getElementById('content').innerHTML)                                     
+   document.getElementById('content').innerHTML = iterateJsonToHTML(myJson);  
                                         
 }">
 
