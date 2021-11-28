@@ -1,4 +1,4 @@
-<h5> Version 0.0.14 </h5>
+<h5> Version 0.0.15 </h5>
 
 
 <script>
@@ -34,8 +34,11 @@ function myJsonToHtml( json, element ) {
     } else if( Array.isArray( json[property] ) ) {
       myOutput += "<ul>";
     	for( let i=0; i< json[property].length; i++ ) {
-         // for (const propertyArray in json[property][1]) {
-             myJsonToHtml(json[property][i], element)  // recursive call this
+          for (const propertyArray in json[property][i]) {
+            // myJsonToHtml(json[property][i], element)  // recursive call this
+             myOutput += "<li>" + propertyArray+ " : " + json[property][i] 
+            
+          }  
       }
       myOutput += "</ul>";
     }
