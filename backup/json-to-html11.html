@@ -27,7 +27,7 @@ var myObj = {"app_eui":"6081ertrert14BB81C","dev_eui":"A8610A3335277C06","devadd
     
 
 function lookdeep4(object, myNoNoShow){
-    var collection= [], index= 0, next, item;
+    var collection= "", index= 0, next, item;
         
     console.log(myNoNoShow)
     for(item in object){
@@ -47,12 +47,12 @@ function lookdeep4(object, myNoNoShow){
                     
                     
                if (myNoNoShow.includes(item)) {
-                  collection[index++] =   item + ' : *********************** <br>' ;
+                  collection +=   item + ' : *********************** <br>' ;
               }   else {
-                  collection[index++]= item +':{ '+ lookdeep(next).join(', ')+'}';
+                  collection += item +':{ '+ lookdeep(next).join(', ')+'}';
               }
             } else             if (myNoNoShow.includes(item)) {
-                  collection[index++] =   item + ' : *********************** <br>' ;
+                  collection +=   item + ' : *********************** <br>' ;
               }   else {
                   collection[index++] =   item + ' : ' + next + '<br>';
               }
@@ -249,7 +249,7 @@ function lookdeepOld2(object){
 </script>
 
 
-Version 0.5.14<br>
+Version 0.5.15<br>
 
 
 
