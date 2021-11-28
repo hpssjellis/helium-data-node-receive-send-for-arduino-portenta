@@ -1,4 +1,4 @@
-<h5> Version 0.0.12 </h5>
+<h5> Version 0.0.14 </h5>
 
 
 <script>
@@ -34,8 +34,8 @@ function myJsonToHtml( json, element ) {
     } else if( Array.isArray( json[property] ) ) {
       myOutput += "<ul>";
     	for( let i=0; i< json[property].length; i++ ) {
-       // appendDOM( json[property][i], child );
-              myOutput += property[i] + " : " + json[property[i]] 
+         // for (const propertyArray in json[property][1]) {
+             myJsonToHtml(json[property][i], element)  // recursive call this
       }
       myOutput += "</ul>";
     }
@@ -89,7 +89,8 @@ let myHTML = myJsonToHtml(json, document.getElementById('content'))
 <div id='content'>...</div>
 
 
-
+<hr>
 ...<div id="foo"><div class="blah"><div class="haha"></div><div class="bar"></div><div class="baz"></div></div><div class="yada" style="background: yellow"></div></div>
 
-
+<hr>
+<ul><li>id : foo<ul>r : undefinedo : undefined</ul></li></ul>
