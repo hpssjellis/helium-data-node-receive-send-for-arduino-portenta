@@ -1,4 +1,4 @@
-<h5> Version 0.1.18 </h5>
+<h5> Version 0.1.19 </h5>
 
 
 <script>
@@ -17,19 +17,21 @@ function myJsonToHtml( json, element ) {
     } else if( Array.isArray( json[property] ) ) {
       myOutput += "<ul>";
     	for( let i=0; i < json[property].length; i++ ) {
-        //  for (const propertyArray in json[property][i]) {
-             myOutput += "<li>" + property+ "[" + i + "]";
-            
+             myOutput += "<li>" + property+ "[" + i + "]";          
              myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
-            
-          //}  
+             
+      } //end else  Array
+      
+      else if(typeof json[property][i] == 'object' && json[property][i] != null ){ 
+            myOutput += "<br>OBJECT in ARRAY --" + property+ "[" + i + "]";     
+           myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
       }
       myOutput += "</ul>";
-    }
-  }
+    }// end if typeof
+  } //end for
   myOutput += "</ul>";
   return myOutput
-}  
+}  // end function  
   
   
   
@@ -39,6 +41,7 @@ var myObj = {"app_eui":"6081ertrert14BB81C","dev_eui":"A8610A3335277C06","devadd
   
 
 let json = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
+let myJsonTest = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
 
   
   
