@@ -46,17 +46,17 @@ for(item in object){
                     
            if (Array.isArray(next)){
                for (let cool=0; cool < next.length; cool++){
-                   collection += "<ol>"  +  item + "<br>" +  lookdeep(next[cool], myNoNoShow) + "</ol>";      
+                   collection += "<ol>"  +  item + "<br>" +  lookdeep(next[cool], myNoNoShow) + "</ol>";   // array   
                } 
                       
             } else {
-                  collection += "<ol>"  +  item + "<br>" +  lookdeep(next, myNoNoShow) + "</ol>";
-           
+                  collection += "<ol>"  +  item + "<br>" +  lookdeep(next, myNoNoShow) + "</ol>";  //object
+            }
         }   else  {           
             if (myNoNoShow.includes(item)) {
-                collection +=   "<li>" + item + ' : ***********************' ;
+                collection +=   "<li>" + item + ' : ***********************' ;   // secret
             }   else {
-                       collection +=  "<li>" +  item + ' : ' + next ;
+                       collection +=  "<li>" +  item + ' : ' + next ;        // normal
             }
             
            
