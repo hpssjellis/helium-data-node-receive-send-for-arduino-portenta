@@ -1,4 +1,4 @@
-<h5> Version 0.1.23 </h5>
+<h5> Version 0.1.24 </h5>
 
 
 
@@ -23,13 +23,13 @@
     if( typeof json[property] === 'string' ) {
       myOutput += "<li>" + property + " : " + json[property] 
     } else if(typeof json[property]== 'object' && json[property] != null ){ 
-       myOutput += "<br> is OBJECT --" + property+ "[" + i + "]";     
+       myOutput += "<br> is OBJECT: "+item+" --" + property+ "<br>";     
        myOutput +=  myJsonToHtml(json[property], element)  // recursive call this
    
     } else if( Array.isArray( json[property] ) ) {
        myOutput += "<ul>";
     	  for( let i=0; i < json[property].length; i++ ) {
-             myOutput += "<li>" + property+ "[" + i + "]";          
+             myOutput += "<li>Is Array " + property+ "[" + i + "]";          
              myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
              
        }
