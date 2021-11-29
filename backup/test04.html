@@ -1,4 +1,4 @@
-<h5> Version 0.1.26 </h5>
+<h5> Version 0.1.27 </h5>
 
 
 
@@ -22,9 +22,8 @@
   for (const property in json) {
     if( typeof json[property] === 'string' ) {
       myOutput += "<li>" + property + " : " + json[property] 
-    } else if(typeof json[property]== 'object' && json[property] != null ){ 
-       myOutput += "<br>" + property+ "<br>";     
-       myOutput +=  myJsonToHtml(json[property], element)  // recursive call this
+    } else if(typeof json[property]== 'object' && json[property] != null ){  
+       myOutput += property + myJsonToHtml(json[property], element)  // recursive call this
    
     } else if( Array.isArray( json[property] ) ) {
        myOutput += "<ul>";
@@ -61,6 +60,15 @@ let myHTML = myJsonToHtml(json, document.getElementById('content'))
   console.log(document.getElementById('content').innerHTML)
                                         
 }"><br>
+
+<input type=button value=bigger onclick="{
+
+let myHTML = myJsonToHtml(myJsonTest, document.getElementById('content'))
+  document.getElementById('content').innerHTML = myHTML
+  console.log(document.getElementById('content').innerHTML)
+                                        
+}"><br>
+
 
 <input type=button value=test-mine onclick="{
 
