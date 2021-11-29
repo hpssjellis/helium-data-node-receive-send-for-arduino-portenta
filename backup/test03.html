@@ -1,0 +1,92 @@
+<h5> Version 0.1.23 </h5>
+
+
+
+
+<script>
+//from
+// https://stackoverflow.com/questions/59959193/iterate-complex-json-object-of-unknown-complexity?rq=1
+ 
+  
+  /*
+           if(typeof json[property][i] == 'object' && json[property][i] != null ){ 
+            myOutput += "<br>OBJECT in ARRAY --" + property+ "[" + i + "]";     
+            myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
+          } else {
+  */
+ 
+ 
+
+function myJsonToHtml( json, element ) {
+  let myOutput = "<ul>";
+  for (const property in json) {
+    if( typeof json[property] === 'string' ) {
+      myOutput += "<li>" + property + " : " + json[property] 
+    } else if( Array.isArray( json[property] ) ) {
+      myOutput += "<ul>";
+    	for( let i=0; i < json[property].length; i++ ) {
+             myOutput += "<li>" + property+ "[" + i + "]";          
+             myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
+             
+      }
+      myOutput += "</ul>";
+    }
+  }
+  myOutput += "</ul>";
+  return myOutput
+}  
+  
+        
+  
+
+let myJson2 = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
+let myJsonTest = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
+
+  
+  
+</script>
+
+
+
+
+<input type=button value=test3 onclick="{
+
+let myHTML = myJsonToHtml(myJson2, document.getElementById('content'))
+  document.getElementById('content').innerHTML = myHTML
+  console.log(document.getElementById('content').innerHTML)
+                                        
+}"><br>
+
+<input type=button value=test-mine onclick="{
+
+let myHTML = myJsonToHtml(myObj, document.getElementById('content'))
+  document.getElementById('content').innerHTML = myHTML
+  console.log(document.getElementById('content').innerHTML)
+                                        
+}"><br>
+
+
+ 
+
+<div id='content'>...</div>
+
+
+<hr>
+<pre>
+let json = {
+  id: "foo",
+  rows: [
+    {
+      class: "blah",
+      cols: [
+        { class: "haha"},
+        { class: "bar" },
+        { class: "baz" }
+      ]
+    }, {
+      class: "yada"
+    }
+  ]
+}
+
+</pre>
