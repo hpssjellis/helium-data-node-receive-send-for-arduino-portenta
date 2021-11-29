@@ -1,4 +1,4 @@
-<h5> Version 0.1.29 </h5>
+<h5> Version 0.1.30 </h5>
 
 
 
@@ -28,7 +28,8 @@
     } else if( Array.isArray( json[property] ) ) {
        myOutput += "<ul>";
     	  for( let i=0; i < json[property].length; i++ ) {
-             myOutput += "<li>" + property + "[" + i + "]";          
+            // myOutput += "<li>" + property + "[" + i + "]";          
+             myOutput +=  property + "[" + i + "]";         
              myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
              
        }
