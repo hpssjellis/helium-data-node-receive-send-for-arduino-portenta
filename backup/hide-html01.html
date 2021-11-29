@@ -3,7 +3,7 @@
 <script>
   
 function myHideHTML(myHide){
-   alert(myHide)
+   return myHide
 }  
   
   
@@ -18,7 +18,8 @@ function myHideHTML(myHide){
 
   document.getElementById('content').innerHTML = myHideHTML('Hide Me')
                                    
-//  console.log(document.getElementById('content').innerHTML)
+  console.log('document.getElementById(content).innerHTML')
+  console.log(document.getElementById('content').innerHTML)
                                         
 }"><br>
 
@@ -30,3 +31,24 @@ function myHideHTML(myHide){
         this.type = 'password'
        }                                   
 }"><br>
+
+
+
+
+<input type=password value = "Cool single"  readonly onclick="{ if (this.type == 'password' ){ this.type = 'test'; } else  { this.type = 'password'; } "><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
