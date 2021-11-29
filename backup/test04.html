@@ -1,4 +1,4 @@
-<h5> Version 0.1.28 </h5>
+<h5> Version 0.1.29 </h5>
 
 
 
@@ -44,7 +44,7 @@ var myObj = {"app_eui":"6081ertrert14BB81C","dev_eui":"A8610A3335277C06","devadd
   
 
 let json = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
-let myJsonTest = {id: "foo",rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class: "yada", style:"background: yellow"}]}
+let myJsonTest = {id: {class: "bar"},{class: "baz"},rows: [{class: "blah",cols: [{class: "haha"},{class: "bar"},{class: "baz"}]},{class:  [{class: "haha"},{class: "bar"},{class: "baz"}], style:"background: yellow"}]}
 
   
   
@@ -97,7 +97,8 @@ let json = {
         { class: "baz" }
       ]
     }, {
-      class: "yada"
+      class: "yada",
+      style:"background: yellow"
     }
   ]
 }
