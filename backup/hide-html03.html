@@ -1,0 +1,57 @@
+<h5> Version 0.1.25 </h5>
+
+<script>
+  
+function myHideHTML(myHide){
+   return `<input type=password value = '` + myHide + `'  readonly onclick="{ if ( this.type == 'password' ){ this.type = 'test' } else  { this.type = 'password' } }">`
+}  
+  
+  
+  
+</script>
+
+
+<div id='content'>...</div>
+
+<input type=button value="hide stuff" onclick="{
+                                          
+  document.getElementById('content').innerHTML = myHideHTML('Hide Me')
+                                   
+  console.log('document.getElementById(content).innerHTML')
+  console.log(document.getElementById('content').innerHTML)
+                                        
+}"><br>
+
+
+<input type=password value = "Cool single"  readonly onclick="{
+       if (this.type == 'password' ){
+        this.type = 'test' 
+       } else  {                                 
+        this.type = 'password'
+       }                                   
+}"><br><br>
+                                                              
+                                                              
+
+
+<input type=password value = "Cool single"  readonly onclick="{ if ( this.type == 'password' ){ this.type = 'test' } else  { this.type = 'password' } }">
+
+                                                              
+                 
+
+<input type=password value = "Cool single"  readonly onclick="{ if ( this.type == 'password' ){ this.type = 'test' } else  { this.type = 'password' } }">
+
+<br><br>
+             
+
+
+
+
+
+
+
+
+
+
+
+
