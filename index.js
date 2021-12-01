@@ -3,7 +3,8 @@ const http = require("http");
 
 const hostname = "0.0.0.0";
 const port = 8080;
-
+let myNoShow = [];   // Key for which we should not show the value when taking a picature of the screen
+//let myNoShow = ["app_eui","dev_eui","lat","long", "name","devaddr","downlink_url","id","organization_id","uuid"];
 let oldChunk = "Hello World";
 let myDataType='';
 let myKeys = '';
@@ -11,26 +12,32 @@ let myHotspots = '';
 let myMetaData = '';
 let myLabels = '';
 let myAllKeys = '';
-let myHTML = '';
+let myHTML = 'Hello World';
 
 
 
 
 
-function myJsonToHtml( json, element ) {
+function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
   let myOutput = "<ul>";
   for (const property in json) {
-    if( typeof json[property] === 'string' ) {
-      myOutput += "<li>" + property + " : " + json[property] 
+    if( typeof json[property] === 'string' || typeof json[property] === 'number' || typeof json[property] === 'boolean' || typeof json[property] === 'bigint') {
+
+        if (myNoNoShow.includes(property)) {
+          myOutput += "<li>" + property + " : *******************"; 
+        } else {
+          myOutput += "<li>" + property + " : " + json[property]; 
+        }
+      
     } else if(typeof json[property]== 'object' && json[property] != null ){  
-       myOutput += "<br>" + property + myJsonToHtml(json[property], element)  // recursive call this
+       myOutput += "<br>" + property + myJsonToHtml(json[property], myNoNoShow)  // recursive call this
    
     } else if( Array.isArray( json[property] ) ) {
        myOutput += "<br><ul>" + property;
     	  for( let i=0; i < json[property].length; i++ ) {
             // myOutput += "<li>" + property + "[" + i + "]";          
              myOutput +=  property + "[" + i + "]";         
-             myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
+             myOutput +=  myJsonToHtml(json[property][i], myNoNoShow)  // recursive call this
              
        }
        myOutput += "</ul>";
@@ -56,10 +63,10 @@ const server = http.createServer((req, res) => {
 
 
     console.log("BODY: " + chunk);   // Logs everything coming in
-    let myNoNoShow = ["good","luck"];
+
 
     let data = JSON.parse(chunk)
-    myHTML = myJsonToHtml(data, myNoNoShow)
+    myHTML = myJsonToHtml(data, myNoShow)
     for (x in data) {   
       //  console.log(x +" => "+ data[x]); 
         myKeys += x + "<br>";
