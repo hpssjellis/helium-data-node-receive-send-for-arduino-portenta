@@ -2,10 +2,35 @@ const http = require("http");
 
 const hostname = "0.0.0.0";
 const port = 8080;
-let myNoShow = [];   // key to values to hide!
-//let myNoShow = ["app_eui","dev_eui","lat","long", "name","devaddr","downlink_url","id","organization_id","uuid"];
+let myHideData = false;   // true to hide location and ID data
 
+let myNoShow = [];   // key to values to hide!
+let myNoShow2 = ["app_eui","dev_eui","lat","long", "name","devaddr","downlink_url","id","organization_id","uuid"];
 let myHTML = 'Hello World';
+
+
+if (myHideData){
+  myNoShow = myNoShow2;
+} 
+
+function timeConverter(UNIX_timestamp){
+ // var a = new Date(UNIX_timestamp * 1000);
+ //var timezone = new Date().getTimezoneOffset();
+ //console.log(timezone);
+  //var a = new Date(UNIX_timestamp); 
+  var a = new Date(parseInt(UNIX_timestamp)-(28800*1000)); // convert GMT to PST
+ // var a = UNIX_timestamp;
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+  return time;
+}
+
 
 
 function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
@@ -15,9 +40,22 @@ function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
         if (myNoNoShow.includes(property)) {
           myOutput += "<li>" + property + " : *******************"; 
         } else {
-          myOutput += "<li>" + property + " : " + json[property]; 
+          myOutput += "<li>" + property + " : " + json[property];
+          // specific properties tested here
+          if (property == "payload"){
+            myOutput += " , Base 64 converted: <b>" + Buffer.from(json[property], 'base64') + "</b>";
+          } 
+          if (property == "id"){
+            myOutput += "  <a target='_blank' href='https://explorer.helium.com/hotspots/"+json[property]+"'>Helium Link</a><br>" ;
+          } 
+          if (property == "reported_at"){
+            myOutput +=", Date: (PST) " + timeConverter(json[property]) ;
+          } 
+
+
+
         }
-      
+
     } else if(typeof json[property]== 'object' && json[property] != null ){  
        myOutput += "<br>" + property + myJsonToHtml(json[property], myNoNoShow)  // recursive call this
    
