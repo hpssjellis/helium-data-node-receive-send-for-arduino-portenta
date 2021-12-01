@@ -3,33 +3,72 @@ const http = require("http");
 
 const hostname = "0.0.0.0";
 const port = 8080;
+
 let oldChunk = "Hello World";
+let myDataType='';
 let myKeys = '';
 let myHotspots = '';
 let myMetaData = '';
 let myLabels = '';
 let myAllKeys = '';
+let myHTML = '';
+
+
+
+
+
+function myJsonToHtml( json, element ) {
+  let myOutput = "<ul>";
+  for (const property in json) {
+    if( typeof json[property] === 'string' ) {
+      myOutput += "<li>" + property + " : " + json[property] 
+    } else if(typeof json[property]== 'object' && json[property] != null ){  
+       myOutput += "<br>" + property + myJsonToHtml(json[property], element)  // recursive call this
+   
+    } else if( Array.isArray( json[property] ) ) {
+       myOutput += "<br><ul>" + property;
+    	  for( let i=0; i < json[property].length; i++ ) {
+            // myOutput += "<li>" + property + "[" + i + "]";          
+             myOutput +=  property + "[" + i + "]";         
+             myOutput +=  myJsonToHtml(json[property][i], element)  // recursive call this
+             
+       }
+       myOutput += "</ul>";
+    }
+  }
+  myOutput += "</ul>";
+  return myOutput
+} 
 
 const server = http.createServer((req, res) => {
   console.log(`\n${req.method} ${req.url}`);
   console.log(req.headers);
 
   req.on("data", function(chunk) {
+    oldChunk = "Hello World";
+    myDataType='';
+    myKeys = '';
+    myHotspots = '';
+    myMetaData = '';
+    myLabels = '';
+    myAllKeys = '';
 
 
 
+    console.log("BODY: " + chunk);   // Logs everything coming in
+    let myNoNoShow = ["good","luck"];
 
-    console.log("BODY: " + chunk);
-    //oldChunk = chunk.toString('ascii');
     let data = JSON.parse(chunk)
-
+    myHTML = myJsonToHtml(data, myNoNoShow)
     for (x in data) {   
       //  console.log(x +" => "+ data[x]); 
         myKeys += x + "<br>";
     }
     for (let y=0; y < data.hotspots.length; y++){
+      myHotspots += "<br><b>Hotspot Array</b> #" + y + "<br>";
       for (x in data.hotspots[y]) {   
          // console.log(x +" => "+ data.hotspots[x]); 
+  
           myHotspots += x + "<br>";
       }
     }
@@ -40,11 +79,17 @@ const server = http.createServer((req, res) => {
         myAllKeys += key + "<br>";
     })
     */
+   let oldChunk2, buff;
 
-    let oldChunk2 = JSON.stringify(data.payload)
-
+   myDataType = data.type
+    if (data.type == "uplink"){
+    oldChunk2 = JSON.stringify(data.payload)
+    buff = Buffer.from(oldChunk2, 'base64');
+    } else {
+      buff = "Not Uplink!"
+    }
     // create a buffer
-    const buff = Buffer.from(oldChunk2, 'base64');
+
 
     // decode buffer as UTF-8
     oldChunk = buff.toString('utf-8');  //.trim();  // also removes spaces
@@ -63,8 +108,9 @@ const server = http.createServer((req, res) => {
 
 
 
-  Just showing the keys on the webpage not the values<br>
-  
+   Just showing the keys on the webpage not the values<br>
+   Note that this is a: join/uplink:<h3> 
+   `+ myDataType + ` </h3>
   ` + myKeys + `
   <h3>in the hotspots key:</h3>
   ` + myHotspots + `
@@ -73,8 +119,10 @@ const server = http.createServer((req, res) => {
   <hr> Page end
   
   `
-  res.write(myPage);
+  //res.write(myPage);
+  res.write(myHTML);
   res.end();
+
 });
 
 server.listen(port, hostname, () => {
