@@ -8,6 +8,7 @@ let myNoShow = [];   // key to values to hide!
 let myNoShow2 = ["app_eui","dev_eui","lat","long", "name","devaddr","downlink_url","id","organization_id","uuid"];
 let myHTML = 'Hello World';
 let myLastProperty;
+let myGoogleMapURLString = ""; 
 
 
 if (myHideData){
@@ -53,8 +54,23 @@ function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
           if (property == "reported_at"){
             myOutput +=", Date: (PST) " + timeConverter(json[property]) ;
           } 
+          if (property == "lat"){
+            myGoogleMapURLString += json[property] + "," ;
+          }           
+          if (property == "long"){
+            myGoogleMapURLString += json[property] + "/" ;
+          } 
 
+          if (property == "payload"){
+            console.log("myGoogleMapURLString"); 
+            console.log(myGoogleMapURLString);
+            let myGoogleURL = "https://www.google.com/maps/dir/"+myGoogleMapURLString+",11z"  
+            console.log("myGoogleURL"); 
+            console.log(myGoogleURL);
 
+            myOutput += " <br> <a target='_blank' href='" + myGoogleURL + "'>Google Maps</a><br>" ;
+
+          } 
 
         }
         myLastProperty = property;  // so we can compare where in the JSON we are  
@@ -81,8 +97,8 @@ const server = http.createServer((req, res) => {
 
   req.on("data", function(chunk) {
 
-    console.log("BODY: " + chunk);   // Logs everything coming in
-
+    console.log(chunk);   // Logs everything coming in
+    myGoogleMapURLString = "";  
     let data = JSON.parse(chunk)
     myHTML = myJsonToHtml(data, myNoShow)
 
