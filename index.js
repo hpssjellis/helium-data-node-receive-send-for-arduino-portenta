@@ -7,6 +7,7 @@ let myHideData = false;   // true to hide location and ID data
 let myNoShow = [];   // key to values to hide!
 let myNoShow2 = ["app_eui","dev_eui","lat","long", "name","devaddr","downlink_url","id","organization_id","uuid"];
 let myHTML = 'Hello World';
+let myLastProperty;
 
 
 if (myHideData){
@@ -37,6 +38,7 @@ function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
   let myOutput = "<ul>";
   for (const property in json) {
     if( typeof json[property] === 'string' || typeof json[property] === 'number' || typeof json[property] === 'boolean' || typeof json[property] === 'bigint') {
+        
         if (myNoNoShow.includes(property)) {
           myOutput += "<li>" + property + " : *******************"; 
         } else {
@@ -45,7 +47,7 @@ function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
           if (property == "payload"){
             myOutput += " , Base 64 converted: <b>" + Buffer.from(json[property], 'base64') + "</b>";
           } 
-          if (property == "id"){
+          if ( property == "id" &&  myLastProperty == "hold_time" ){
             myOutput += "  <a target='_blank' href='https://explorer.helium.com/hotspots/"+json[property]+"'>Helium Link</a><br>" ;
           } 
           if (property == "reported_at"){
@@ -55,6 +57,7 @@ function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
 
 
         }
+        myLastProperty = property;  // so we can compare where in the JSON we are  
 
     } else if(typeof json[property]== 'object' && json[property] != null ){  
        myOutput += "<br>" + property + myJsonToHtml(json[property], myNoNoShow)  // recursive call this
