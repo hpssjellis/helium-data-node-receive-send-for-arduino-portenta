@@ -97,7 +97,9 @@ const server = http.createServer((req, res) => {
 
   req.on("data", function(chunk) {
 
-    console.log(chunk);   // Logs everything coming in
+    //console.log("BODY: " + chunk);   // Logs everything coming in
+    console.log(" " + chunk);   // Logs everything coming in
+
     myGoogleMapURLString = "";  
     let data = JSON.parse(chunk)
     myHTML = myJsonToHtml(data, myNoShow)
