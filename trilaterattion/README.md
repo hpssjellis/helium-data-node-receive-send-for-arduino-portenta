@@ -1,1 +1,13 @@
-Trying to triangulate
+{
+  "name": "helium-node-simple-server",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hpssjellis/helium-data-node-receive-send-for-arduino-portenta"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "ws": "7.4.6",
+    "trilateration": "0.0.1"
+  }
+}
