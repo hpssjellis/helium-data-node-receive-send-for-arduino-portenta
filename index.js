@@ -6,7 +6,7 @@ let myHideData = false;   // true to hide location and ID data
 
 let myNoShow = [];   // key to values to hide!
 let myNoShow2 = ["app_eui","dev_eui","lat","long", "name","devaddr","downlink_url","id","organization_id","uuid"];
-let myHTML = 'Hello World';
+let myHTML = "<meta http-equiv='refresh' content='20' />Hello World";
 let myLastProperty;
 let myGoogleMapURLString = ""; 
 
@@ -46,7 +46,7 @@ function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
           myOutput += "<li>" + property + " : " + json[property];
           // specific properties tested here
           if (property == "payload"){
-            myOutput += " , Base 64 converted: <b>" + Buffer.from(json[property], 'base64') + "</b>";
+            myOutput += "<br> Base 64 converted: <b>" + Buffer.from(json[property], 'base64') + "</b>";
           } 
           if ( property == "id" &&  myLastProperty == "hold_time" ){
             myOutput += "  <a target='_blank' href='https://explorer.helium.com/hotspots/"+json[property]+"'>Helium Link</a><br>" ;
@@ -102,7 +102,7 @@ const server = http.createServer((req, res) => {
 
     myGoogleMapURLString = "";  
     let data = JSON.parse(chunk)
-    myHTML = myJsonToHtml(data, myNoShow)
+    myHTML = " <meta http-equiv='refresh' content='20' /> " + myJsonToHtml(data, myNoShow)
 
   });
   
