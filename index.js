@@ -15,24 +15,16 @@ if (myHideData){
   myNoShow = myNoShow2;
 } 
 
-function timeConverter(UNIX_timestamp){
- // var a = new Date(UNIX_timestamp * 1000);
- //var timezone = new Date().getTimezoneOffset();
- //console.log(timezone);
-  //var a = new Date(UNIX_timestamp); 
-  var a = new Date(parseInt(UNIX_timestamp)-(28800*1000)); // convert GMT to PST
- // var a = UNIX_timestamp;
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var year = a.getFullYear();
-  var month = months[a.getMonth()];
-  var date = a.getDate();
-  var hour = a.getHours();
-  var min = a.getMinutes();
-  var sec = a.getSeconds();
-  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-  return time;
-}
+function myDecoder(myRawPayload){
+  // default base64 decoding
+  let myReturn = Buffer.from(myRawPayload, 'base64')
 
+  // or put your own decoder here
+
+  
+   
+  return myReturn
+}
 
 
 function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
@@ -46,7 +38,7 @@ function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
           myOutput += "<li>" + property + " : " + json[property];
           // specific properties tested here
           if (property == "payload"){
-            myOutput += "<br> Base 64 converted: <b>" + Buffer.from(json[property], 'base64') + "</b>";
+            myOutput += "<br> Encoder converted: <b>" + myDecoder(json[property]) + "</b>";
           } 
           if ( property == "id" &&  myLastProperty == "hold_time" ){
             myOutput += "  <a target='_blank' href='https://explorer.helium.com/hotspots/"+json[property]+"'>Helium Link</a><br>" ;
@@ -90,6 +82,28 @@ function myJsonToHtml( json, myNoNoShow, myHideTrueFalse ) {
   myOutput += "</ul>";
   return myOutput
 } 
+
+
+function timeConverter(UNIX_timestamp){
+  // var a = new Date(UNIX_timestamp * 1000);
+  //var timezone = new Date().getTimezoneOffset();
+  //console.log(timezone);
+   //var a = new Date(UNIX_timestamp); 
+   var a = new Date(parseInt(UNIX_timestamp)-(28800*1000)); // convert GMT to PST
+  // var a = UNIX_timestamp;
+   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+   var year = a.getFullYear();
+   var month = months[a.getMonth()];
+   var date = a.getDate();
+   var hour = a.getHours();
+   var min = a.getMinutes();
+   var sec = a.getSeconds();
+   var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+   return time;
+ }
+ 
+
+
 
 const server = http.createServer((req, res) => {
   console.log(`\n${req.method} ${req.url}`);
