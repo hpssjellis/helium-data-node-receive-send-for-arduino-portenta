@@ -1,4 +1,14 @@
 
+Iwas trying to do some Triulation, but it was a fail. Left the attempts here.
+
+
+
+
+
+
+
+
+
 
 Google maps locations. last one is center of the map I think
 
