@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+    async function doRequest() {
+
+        let url = 'https://r468g.sse.codesandbox.io/';
+        let data = {'name': 'John Doe', 'payload': 'John Doe'};
+
+        let res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+
+            // let text = await res.text();
+            // return text;
+
+            let ret = await res.json();
+            return JSON.parse(ret.data);
+
+        } else {
+            return `HTTP error: ${res.status}`;
+        }
+    }
+
+    doRequest().then(data => {
+        console.log(data);
+    });
+</script>
+</head>
+<body>
+<input type=button value=try onclick="doRequest()">
+
+</body>
+</html>
